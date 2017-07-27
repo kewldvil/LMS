@@ -32,10 +32,10 @@
                             <li class="nav-item start ">
                                 <a href="javascript:;" class="nav-link nav-toggle">
                                     <i class="icon-home"></i>
-                                    <span class="title">Dashboard</span>
-                                    <span class="arrow"></span>
+                                    <span class="title">ទិន្ន័យសង្ខេប</span>
+                                    {{-- <span class="arrow"></span> --}}
                                 </a>
-                                <ul class="sub-menu">
+{{--                                 <ul class="sub-menu">
                                     <li class="nav-item start ">
                                         <a href="index.html" class="nav-link ">
                                             <i class="icon-bar-chart"></i>
@@ -56,15 +56,15 @@
                                             <span class="badge badge-danger">5</span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> --}}
                             </li>
-                            <li class="heading">
+{{--                             <li class="heading">
                                 <h3 class="uppercase">Features</h3>
-                            </li>
+                            </li> --}}
                             <li class="nav-item  ">
                                 <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-diamond"></i>
-                                    <span class="title">UI Features</span>
+                                    <i class="icon-user"></i>
+                                    <span class="title">អតិថិជន</span>
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
