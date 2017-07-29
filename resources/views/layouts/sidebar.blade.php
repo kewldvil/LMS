@@ -62,12 +62,12 @@
                                 <h3 class="uppercase">Features</h3>
                             </li> --}}
                             <li class="nav-item  ">
-                                <a href="javascript:;" class="nav-link nav-toggle">
+                                <a href="/borrower" class="nav-link nav-toggle">
                                     <i class="icon-user"></i>
                                     <span class="title">អតិថិជន</span>
-                                    <span class="arrow"></span>
+                                    {{-- <span class="arrow"></span> --}}
                                 </a>
-                                <ul class="sub-menu">
+                              {{--   <ul class="sub-menu">
                                     <li class="nav-item  ">
                                         <a href="ui_metronic_grid.html" class="nav-link ">
                                             <span class="title">Metronic Grid System</span>
@@ -222,7 +222,7 @@
                                             <span class="title">Nestable List</span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> --}}
                             </li>
                             <li class="nav-item  ">
                                 <a href="javascript:;" class="nav-link nav-toggle">

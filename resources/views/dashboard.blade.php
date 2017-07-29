@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
-
-
 @section('content')
     <div class="portlet light bordered">
 	    <div class="portlet-title">

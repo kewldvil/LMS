@@ -19,3 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/borrower','BorrowerController@index');
+Route::get('/borrower/get_datatable','BorrowerController@get_datatable');

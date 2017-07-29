@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Borrower;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Facades\Datatables;
 
 class BorrowerController extends Controller
 {
@@ -14,9 +15,15 @@ class BorrowerController extends Controller
      */
     public function index()
     {
-        //
+        // $borrwers=Borrower::all();
+        // dd($borrwers->toJson());
+        
+        return view('borrower')->with('page_name','តារាងអតិថិជន');
     }
-
+    public function get_datatable()
+    {
+        return Datatables::eloquent(Borrower::query())->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *

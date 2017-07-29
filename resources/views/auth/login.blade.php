@@ -51,7 +51,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- <img src="../assets/pages/img/logo-big.png" alt="logo" /> </a> -->
         </div>
         <div class="page-body">
-            <div class="lock-head"> Loan Management System </div>
+            <div class="lock-head">ប្រព័ន្ធគ្រប់គ្រងប្រាក់កម្ចី</div>
             <div class="lock-body">
                 <div class="lock-cont">
                     <div class="lock-item">
@@ -62,15 +62,22 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="lock-item lock-item-full">
                         <form class="lock-form pull-left" action="/login" method="post">
                             {{csrf_field()}}
-                            <!-- <h4>Sopheak Nem</h4> -->
+                            @if ($errors->has('username') or $errors->has('password'))
+                                <div class="form-group">
+                                    <div class="alert alert-danger " style="padding: 10px;font-size: 13px" >
+                                        <button class="close" data-close="alert"></button>
+                                        <span>គណនី រឺលេខសម្ងាត់មិនត្រឹមត្រូវ</span>
+                                    </div>
+                                </div>
+                            @endif  
                             <div class="form-group">
-                                <input class="form-control placeholder-no-fix" type="text" autocomplete="on" placeholder="Username" name="username" required />
+                                <input class="form-control placeholder-no-fix" type="text" autocomplete="on" placeholder="គណនី" name="username" required />
                             </div>
                             <div class="form-group">
-                                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" required />
+                                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="លេខសម្ងាត់" name="password" required />
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn red uppercase">Login</button>
+                                <button type="submit" class="btn red"​​ style="font-size: 16px;font-weight: 500">ចូលប្រើ</button>
                             </div>
                         </form>
                     </div>

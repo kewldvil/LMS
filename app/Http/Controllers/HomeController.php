@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+        return view('dashboard')->with('page_name','ទិន្ន័យសង្ខេប');
     }
 }
