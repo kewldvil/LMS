@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Borrower;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
-
 class BorrowerController extends Controller
 {
     /**
@@ -32,6 +31,7 @@ class BorrowerController extends Controller
     public function create()
     {
         //
+        return view('new_borrower')->with('page_name','បន្ថែមអតិថិជនថ្មី');
     }
 
     /**
@@ -42,7 +42,15 @@ class BorrowerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('photo')) {
+
+            $name='hello';
+            $request->merge(['photo' => $name]);
+            $borrowers = new Borrower;
+
+            $borrowers->create($request->all());
+        }
+        
     }
 
     /**

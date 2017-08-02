@@ -20,5 +20,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/borrower','BorrowerController@index');
-Route::get('/borrower/get_datatable','BorrowerController@get_datatable');
+Route::group(['middleware'=>'auth'],function ()
+{
+	Route::get('/borrower','BorrowerController@index')->name('borrower');
+	Route::post('/borrower','BorrowerController@store')->name('borrower');
+	Route::get('/borrower/get_datatable','BorrowerController@get_datatable');
+	Route::get('/borrower/new_borrower','BorrowerController@create')->name('new_borrower');	
+});
+

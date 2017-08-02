@@ -16,9 +16,10 @@ class CreateBorrowersTable extends Migration
         Schema::create('borrowers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',50);
-            $table->string('address',100);
-            $table->string('phone',20);
-            $table->string('photo',200);
+            $table->char('sex',1);
+            $table->string('address',100)->nullable();
+            $table->string('phone',20)->nullable();
+            $table->string('photo',500)->nullable();
             $table->timestamps();
         });
     }

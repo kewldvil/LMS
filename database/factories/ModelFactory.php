@@ -27,6 +27,7 @@ $factory->define(App\Borrower::class, function (Faker\Generator $faker) {
 
     return [
         'name' => ucfirst($faker->name),
+        'sex'=>$faker->randomElement($array = array ('m', 'f')),
         'address' => $faker->address,
         'phone' => $faker->e164PhoneNumber,
         'photo'=> $faker->imageUrl($width = 640, $height = 480),

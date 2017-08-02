@@ -18,7 +18,7 @@
     <!-- END HEAD -->        
 
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-sidebar-mobile-offcanvas page-md">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-sidebar-mobile-offcanvas page-md">
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
@@ -27,14 +27,14 @@
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
                         <a href="index.html">
-                            <img src="{{ asset('assets/layouts/layout/img/logo.png')}}" alt="logo" class="logo-default" /> </a>
+                            <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler">
                             <span></span>
                         </div>
                     </div>
                     <!-- END LOGO -->
                     <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                    <a href="javascript:;" class="menu-toggler responsive-toggler">
+                    <a href="javascript:;" class="menu-toggler responsive-toggler" >
                         <span></span>
                     </a>
                     <!-- END RESPONSIVE MENU TOGGLER -->
@@ -47,21 +47,37 @@
             <div class="clearfix"> </div>
             <!-- END HEADER & CONTENT DIVIDER -->
             <!-- BEGIN CONTAINER -->
-            <div class="page-container">
+            <div class="page-container" style="margin-top: 30px;">
                 @include('layouts.sidebar')
                 <!-- BEGIN CONTENT -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN CONTENT BODY -->
                     <div class="page-content">
                         <!-- BEGIN PAGE HEADER-->
-{{--                             <!-- BEGIN PAGE TITLE-->
-                            <h1 class="page-title"> Off-canvas Mobile Menu
-                                <small>off-canvas mobile menu</small>
-                            </h1>
-                            <!-- END PAGE TITLE--> --}}
+                        <!-- BEGIN PAGE BAR -->
+                        <div class="page-bar">
+                            {{-- <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="/home">Home</a>
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                                <li>
+                                    <span>Form Stuff</span>
+                                </li>
+                            </ul> --}}
+                            @yield('breadcrumbs')
+                        </div>
+                        <!-- END PAGE BAR -->
+                        <!-- BEGIN PAGE TITLE-->
+                        <h1 class="page-title"> @yield('page_header')
+                            <small>@yield('page_description')</small>
+                        </h1>
+                        <!-- END PAGE TITLE-->
                         <!-- END PAGE HEADER-->
-                        <div class="page-content-body">
-                            @yield('content')
+                        <div class="row">
+                            <div class="col-md-12">
+                                @yield('content')
+                            </div>
                         </div>
                     </div>
                     <!-- END CONTENT BODY -->
@@ -69,8 +85,12 @@
                 <!-- END CONTENT -->
             </div>
             <!-- END CONTAINER -->
-            @include('layouts.footer')
-            @yield('script')
+        <!--[if lt IE 9]>
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+        @include('layouts.footer') 
     </body>
 
 </html>
