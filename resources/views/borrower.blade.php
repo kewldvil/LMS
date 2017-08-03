@@ -67,7 +67,8 @@
             columns: [
             	{
                         "render": function (data, type, JsonResultRow, meta) {
-                            return '<img class="user-pic" src="'+JsonResultRow.photo+'">';
+                        	var path = '{{asset('storage/')}}';
+                            return '<img class="user-pic" src="'+path+'/'+JsonResultRow.photo+'">';
                         }
                 },
 	            { data: 'name' },

@@ -40,7 +40,16 @@
                                         <span class="selected"></span>    
                                     @endif
                                 </a>
-
+                            </li>
+                            <li class="nav-item  {!!Request::is('borrower_loan','borrower_loan/*')?'active open':''!!}">
+                                <a href="/borrower_loan" class="nav-link nav-toggle">
+                                    <i class="fa fa-credit-card"></i>
+                                    <span class="title">តារាងកម្ចី</span>
+                                    @if (Request::is('borrower_loan'))
+                                        <span class="selected"></span>    
+                                    @endif
+                                </a>
+                            </li>                            
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->

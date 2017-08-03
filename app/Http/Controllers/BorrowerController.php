@@ -42,15 +42,16 @@ class BorrowerController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
         if ($request->hasFile('photo')) {
-
-            $name='hello';
-            $request->merge(['photo' => $name]);
-            $borrowers = new Borrower;
-
-            $borrowers->create($request->all());
+            $photoName=time().''.$request->photo->getClientOriginalName();
+            $request->photo->storeAs('public',$photoName);
+            $data['photo']=$photoName;
+        }else{
+            $request->sex=='m'?$data['photo']='boy.png':$data['photo']='girl.png';
         }
-        
+            Borrower::create($data);
+        return redirect('/borrower');
     }
 
     /**
