@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8fd17c0aa98080dd7340bc8c82d0e6b",
+    "content-hash": "27968badde3b8b986b0228964392007d",
     "packages": [
         {
             "name": "davejamesmiller/laravel-breadcrumbs",

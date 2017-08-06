@@ -294,6 +294,7 @@ class ComposerStaticInit9bab2eb93b7b8383315441c7a31417b5
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\BorrowerController' => __DIR__ . '/../..' . '/app/Http/Controllers/BorrowerController.php',
+        'App\\Http\\Controllers\\BorrowerLoanController' => __DIR__ . '/../..' . '/app/Http/Controllers/BorrowerLoanController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LoanController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoanController.php',

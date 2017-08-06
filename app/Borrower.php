@@ -10,7 +10,7 @@ class Borrower extends Model
     protected $fillable =['name','address','photo','phone','sex'];
     public function loans()
     {
-    	return $this->belongsToMany(Loan::class);
+    	return $this->belongsToMany(Loan::class)->withPivot('amount','start_pay_date','status')->withTimestamps();
     }
 
     public function payments()

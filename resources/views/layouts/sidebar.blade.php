@@ -46,10 +46,28 @@
                                     <i class="fa fa-credit-card"></i>
                                     <span class="title">តារាងកម្ចី</span>
                                     @if (Request::is('borrower_loan'))
-                                        <span class="selected"></span>    
+                                        <span class="selected"></span> 
                                     @endif
                                 </a>
-                            </li>                            
+                            </li>
+                            <li class="nav-item  {!!Request::is('setting','setting/*')?'active open':''!!}">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="fa fa-cogs"></i>
+                                    <span class="title">កំណែរប្រែ</span>
+                                    @if (Request::is('setting') or Request::is('setting/*'))
+                                        <span class="selected"></span>    
+                                    @else
+                                        <span class="arrow"></span> 
+                                    @endif
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="/setting/setting_loan" class="nav-link ">
+                                            <span class="title">កម្ចី</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>                                                        
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->

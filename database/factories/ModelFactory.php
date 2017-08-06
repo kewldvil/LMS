@@ -33,3 +33,12 @@ $factory->define(App\Borrower::class, function (Faker\Generator $faker) {
         'photo'=> $faker->imageUrl($width = 640, $height = 480),
     ];
 });
+$factory->define(App\Loan::class, function (Faker\Generator $faker) {
+
+    return [
+        'loan_name'=>'បង់៦០ថ្ងៃ',
+        'interest'=>2.5,
+        'term'=>60,
+        'frequency'=>1,
+    ];
+});

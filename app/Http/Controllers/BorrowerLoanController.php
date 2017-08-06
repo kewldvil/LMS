@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Borrower;
 use App\Loan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
-class LoanController extends Controller
+class BorrowerLoanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,20 @@ class LoanController extends Controller
      */
     public function index()
     {
-        $data= DB::table('loans')->paginate(15);
-        return view('loan_setting',['page_name'=>'កំណែរប្រែប្រភេទកម្ចី','loans'=>$data]);
+        //  $data =DB::table('borrowers')
+        //  ->select(DB::raw('*,DATEDIFF(now(),borrower_loan.start_pay_date) AS paid_day,ADDDATE(borrower_loan.start_pay_date,loans.term) AS finish_date'))
+        // ->join('borrower_loan','borrowers.id','=','borrower_loan.borrower_id')
+        // ->join('loans','loans.id','=','borrower_loan.loan_id')
+        // ->get();
+        // ->toSql();
+        return view('borrower_loan',['page_name'=>'តារាងប្រាក់កម្ចី']);
     }
     public function get_datatable()
     {
-        return Datatables::eloquent(Loan::query())->make(true);
+        return Datatables::queryBuilder(DB::table('borrowers')
+         ->select(DB::raw('*,DATEDIFF(now(),borrower_loan.start_pay_date) AS paid_day,ADDDATE(borrower_loan.start_pay_date,loans.term) AS finish_date,DATEDIFF(ADDDATE(borrower_loan.start_pay_date,loans.term),now()) AS remain_day'))
+        ->join('borrower_loan','borrowers.id','=','borrower_loan.borrower_id')
+        ->join('loans','loans.id','=','borrower_loan.loan_id'))->make(true);
     }
     /**
      * Show the form for creating a new resource.
@@ -29,10 +37,10 @@ class LoanController extends Controller
      */
     public function create()
     {
-        return view('new_setting_loan',['page_name'=>'បន្ថែមប្រភេទកម្ចីថ្មី']);
+        //
     }
 
-    /**
+    /**`
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -40,22 +48,16 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'loan_name'=>'required',
-            'interest'=>'required',
-            'term'=>'required',
-        ]);
-        Loan::create($request->all());
-        return redirect('/setting/setting_loan');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Loan  $loan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Loan $loan)
+    public function show($id)
     {
         //
     }
@@ -63,10 +65,10 @@ class LoanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Loan  $loan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Loan $loan)
+    public function edit($id)
     {
         //
     }
@@ -75,10 +77,10 @@ class LoanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Loan  $loan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loan $loan)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -86,10 +88,10 @@ class LoanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Loan  $loan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loan $loan)
+    public function destroy($id)
     {
         //
     }

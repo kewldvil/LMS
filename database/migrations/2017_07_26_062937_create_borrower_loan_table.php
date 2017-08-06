@@ -17,7 +17,7 @@ class CreateBorrowerLoanTable extends Migration
             $table->increments('id');
             $table->integer('borrower_id');
             $table->integer('loan_id');
-            $table->float('amount',8,2);
+            $table->float('amount',10,2);
             $table->date('start_pay_date');
             $table->boolean('status');
             $table->timestamps();

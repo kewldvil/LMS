@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('borrower_loan_id');
             $table->date('payment_schedule');
             $table->integer('payment_number');
-            $table->float('amount',8,2);
+            $table->float('amount',10,2);
             $table->boolean('status');
             $table->timestamps();
         });

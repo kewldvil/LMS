@@ -1,12 +1,11 @@
 @extends('layouts.master')
 @section('page_css')
-<link href="{{asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('breadcrumbs')
-{!! Breadcrumbs::render('new_borrower') !!}
+{!! Breadcrumbs::render('new_setting_loan') !!}
 @endsection
-@section('page_header','តារាងអតិថិជនថ្មី')
-@section('page_description','បង្កើតអតិថិជនថ្មី')
+@section('page_header','តារាងកម្ចីថ្មី')
+@section('page_description','បន្ថែមប្រភេទកម្ចីថ្មី')
 @section('content')
     <div class="portlet box green">
     <div class="portlet-title">
@@ -21,58 +20,61 @@
     </div>
     <div class="portlet-body form">
         <!-- BEGIN FORM-->
-        <form action="/borrower" class="form-horizontal" method="POST" enctype="multipart/form-data">
+        <form action="/setting/setting_loan" class="form-horizontal" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-body">
                 <div class="form-group">
-                    <label class="col-md-3 control-label">ឈ្មោះ</label>
+                    <label class="col-md-3 control-label">ឈ្មោះកម្ចី</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-circle" placeholder="បញ្ចូលឈ្មោះអតិថិជនថ្មី" name="name" required> 
+                        <input type="text" class="form-control input-circle" placeholder="បញ្ចូលឈ្មោះកម្ចី" name="loan_name">
                         {{-- <span class="help-block"> A block of help text. </span> --}}
+                        @if($errors->has('loan_name'))
+                            <span id="name-error" class="help-block help-block-error"​ style="font-size: 12px;color:red">ត្រូវបញ្ចូលឈ្មោះកម្ចី</span>
+                        @endif
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">ភេទ</label>
+                    <label class="col-md-3 control-label">ការប្រាក់</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="number" step="0.1" class="form-control input-circle-left" placeholder="" name="interest">
+                            <span class="input-group-addon input-circle-right">
+                                <i class="fa fa-percent"></i>
+                            </span>
+                        </div>
+                        @if($errors->has('interest'))
+                            <span id="name-error" class="help-block help-block-error"​ style="font-size: 12px;color:red">ត្រូវបញ្ចូលការប្រាក់</span>
+                        @endif                         
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">រយៈពេលបង់</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="number" min="1" class="form-control input-circle-left" placeholder="" name="term">
+                            <span class="input-group-addon input-circle-right">
+                                <i>ថ្ងៃ</i>
+                            </span>
+                        </div>
+                        @if($errors->has('term'))
+                            <span id="name-error" class="help-block help-block-error"​ style="font-size: 12px;color:red">ត្រូវបញ្ចូលរយៈពេលបង់</span>
+                        @endif                        
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label class="col-md-3 control-label">ប្រភេទបង់</label>
                     <div class="col-md-4">
                         {{-- <input type="text" class="form-control input-circle" placeholder="បញ្ចូលឈ្មោះអតិថិជនថ្មី"> --}}
-                        <select class="form-control"​ name="sex">
-                            <option value="f">ស្រី</option>
-                            <option value="m">ប្រុស</option>
+                        <select class="form-control"​ name="frequency">
+                            <option value="1">រាល់ថ្ងៃ</option>
+                            <option value="7">រៀងរាល់ ០៧ថ្ងៃ</option>
+                            <option value="15">រៀងរាល់ ១៥ថ្ងៃ</option>
+                            <option value="30">រៀងរាល់ ៣០ថ្ងៃ</option>
                         </select>
                         {{-- <span class="help-block"> A block of help text. </span> --}}
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">អាសយដ្ឋាន</label>
-                    <div class="col-md-4">
-                        <textarea name="address" placeholder="បញ្ចូលអសយដ្ឋានអតិថិជន"​ class="form-control "></textarea>
-                        {{-- <span class="help-block"> A block of help text. </span> --}}
-                    </div>
-                </div>                                
-                <div class="form-group">
-                    <label class="col-md-3 control-label">លេខទូរស័ព្ទ</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control input-circle" placeholder="លេខទូរស័ព្ទអតិថិជន" name="phone" id="phone" >
-                        {{-- <span class="help-block"> A block of help text. </span> --}}
-                    </div>
-                </div>       
-                <div class="form-group last">
-                    <label class="control-label col-md-3">រូបថត</label>
-                    <div class="col-md-9">
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
-                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                            <div>
-                                <span class="btn default btn-file">
-                                    <span class="fileinput-new"> ជ្រើសរើសរូបថត </span>
-                                    <span class="fileinput-exists"> ប្តូររូបថត </span>
-                                    <input type="file" name="photo"> </span>
-                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> លុបរូបថត </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>                         
+                </div>                    
+                       
             
 
 {{--                 <div class="form-group">
@@ -128,7 +130,7 @@
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
                         <button type="submit" class="btn btn-circle green">ដាក់បញ្ចូល</button>
-                        <a href="/borrower" title="">
+                        <a href="/setting/setting_loan" title="">
                             <button type="button" class="btn btn-circle grey-salsa btn-outline">បោះបង់</button>
                         </a>
                     </div>
@@ -140,15 +142,5 @@
     </div>
 @endsection
 @section('script')
-<script src="{{asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}" type="text/javascript" ></script>
-<script src="{{asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')}}" type="text/javascript" ></script>
-<script src="{{asset('assets/global/plugins/jquery.input-ip-address-control-1.0.min.js')}}" type="text/javascript" ></script>
-<script src="{{ asset('assets/pages/scripts/form-input-mask.min.js') }}" type="text/javascript"></script>
-<script>
-        $(document).ready(function()
-            {
-                $('#phone').inputmask("(999[9])-999-999");
-            });
-</script>
 
 @endsection

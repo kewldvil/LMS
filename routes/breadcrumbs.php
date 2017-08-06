@@ -11,13 +11,33 @@ Breadcrumbs::register('borrower', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('អតិថិជន', route('borrower'));
 });
-// Home > Blog > New Borroser
+
+// Home > Borrower Loan
+Breadcrumbs::register('borrower_loan', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('តារាងប្រាក់កម្ចី', route('borrower_loan'));
+});
+
+
+// Home > Borrower > New Borrower
 Breadcrumbs::register('new_borrower', function($breadcrumbs)
 {
     $breadcrumbs->parent('borrower');
     $breadcrumbs->push('អតិថិជនថ្មី', route('new_borrower'));
 });
-
+// Home > Setting Loan
+Breadcrumbs::register('setting_loan', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('ប្រភេទកម្ចី', route('setting_loan'));
+});
+// Home > Setting Loan > New Setting Loan
+Breadcrumbs::register('new_setting_loan', function($breadcrumbs)
+{
+    $breadcrumbs->parent('setting_loan');
+    $breadcrumbs->push('ប្រភេទកម្ចីថ្មី​', route('new_setting_loan'));
+});
 
 
 
