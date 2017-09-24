@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Borrower;
+use Session;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 class BorrowerController extends Controller
@@ -17,11 +18,12 @@ class BorrowerController extends Controller
         // $borrwers=Borrower::all();
         // dd($borrwers->toJson());
         
-        return view('borrower')->with('page_name','តារាងអតិថិជន');
+        return view('borrower.home')->with('page_name','តារាងអតិថិជន');
     }
     public function get_datatable()
     {
-        return Datatables::eloquent(Borrower::query())->make(true);
+        return Borrower::all();
+        //return Datatables::eloquent(Borrower::query())->make(true);
     }
     /**
      * Show the form for creating a new resource.
@@ -31,7 +33,7 @@ class BorrowerController extends Controller
     public function create()
     {
         //
-        return view('new_borrower')->with('page_name','បន្ថែមអតិថិជនថ្មី');
+        return view('borrower.create')->with('page_name','បន្ថែមអតិថិជនថ្មី');
     }
 
     /**
@@ -50,8 +52,11 @@ class BorrowerController extends Controller
         }else{
             $request->sex=='m'?$data['photo']='boy.png':$data['photo']='girl.png';
         }
-            Borrower::create($data);
-        return redirect('/borrower');
+
+        Session::flash('flash_message', 'អតិថិជនថ្មីបានបន្ថែម !');
+        Borrower::create($data);
+        return redirect('/borrower');    
+        
     }
 
     /**

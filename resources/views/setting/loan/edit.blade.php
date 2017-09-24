@@ -2,12 +2,12 @@
 @section('page_css')
 @endsection
 @section('breadcrumbs')
-{!! Breadcrumbs::render('new_setting_loan') !!}
+{!! Breadcrumbs::render('update_loan') !!}
 @endsection
-@section('page_header','តារាងកម្ចីថ្មី')
-@section('page_description','បន្ថែមប្រភេទកម្ចីថ្មី')
+@section('page_header','តារាងកម្ចី')
+@section('page_description','កែប្រែប្រភេទកម្ចី')
 @section('content')
-    <div class="portlet box green">
+    <div class="portlet box purple">
     <div class="portlet-title">
         {{-- <div class="caption"> --}}
             {{-- <i class="fa fa-gift"></i>Form Actions On Bottom </div> --}}
@@ -20,13 +20,15 @@
     </div>
     <div class="portlet-body form">
         <!-- BEGIN FORM-->
-        <form action="/setting/setting_loan" class="form-horizontal" method="POST" enctype="multipart/form-data">
+        <form action="{{route('loan.update',$loan->id)}}" class="form-horizontal" method="POST">
+            {{-- <input name="_method" type="hidden" value="PUT"> --}}
+            {{ method_field('PUT') }}
             {{csrf_field()}}
             <div class="form-body">
                 <div class="form-group">
                     <label class="col-md-3 control-label">ឈ្មោះកម្ចី</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-circle" placeholder="បញ្ចូលឈ្មោះកម្ចី" name="loan_name">
+                        <input type="text" class="form-control input-circle" placeholder="បញ្ចូលឈ្មោះកម្ចី" name="loan_name" value="{{$loan->loan_name}}">
                         {{-- <span class="help-block"> A block of help text. </span> --}}
                         @if($errors->has('loan_name'))
                             <span id="name-error" class="help-block help-block-error"​ style="font-size: 12px;color:red">ត្រូវបញ្ចូលឈ្មោះកម្ចី</span>
@@ -37,7 +39,7 @@
                     <label class="col-md-3 control-label">ការប្រាក់</label>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <input type="number" step="0.1" class="form-control input-circle-left" placeholder="" name="interest">
+                            <input type="number" step="0.1" class="form-control input-circle-left" placeholder="" name="interest" value="{{$loan->interest}}">
                             <span class="input-group-addon input-circle-right">
                                 <i class="fa fa-percent"></i>
                             </span>
@@ -51,7 +53,7 @@
                     <label class="col-md-3 control-label">រយៈពេលបង់</label>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <input type="number" min="1" class="form-control input-circle-left" placeholder="" name="term">
+                            <input type="number" min="1" class="form-control input-circle-left"  name="term" value="{{$loan->term}}">
                             <span class="input-group-addon input-circle-right">
                                 <i>ថ្ងៃ</i>
                             </span>
@@ -66,10 +68,10 @@
                     <div class="col-md-4">
                         {{-- <input type="text" class="form-control input-circle" placeholder="បញ្ចូលឈ្មោះអតិថិជនថ្មី"> --}}
                         <select class="form-control"​ name="frequency">
-                            <option value="1">រាល់ថ្ងៃ</option>
-                            <option value="7">រៀងរាល់ ០៧ថ្ងៃ</option>
-                            <option value="15">រៀងរាល់ ១៥ថ្ងៃ</option>
-                            <option value="30">រៀងរាល់ ៣០ថ្ងៃ</option>
+                            <option value="1" {{$loan->frequency==1?"selected":""}}>រាល់ថ្ងៃ</option>
+                            <option value="7" {{$loan->frequency==7?"selected":""}}>រៀងរាល់ ០៧ថ្ងៃ</option>
+                            <option value="15" {{$loan->frequency==15?"selected":""}}>រៀងរាល់ ១៥ថ្ងៃ</option>
+                            <option value="30" {{$loan->frequency==30?"selected":""}}>រៀងរាល់ ៣០ថ្ងៃ</option>
                         </select>
                         {{-- <span class="help-block"> A block of help text. </span> --}}
                     </div>
@@ -129,8 +131,8 @@
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
-                        <button type="submit" class="btn btn-circle green">ដាក់បញ្ចូល</button>
-                        <a href="/setting/setting_loan" title="">
+                        <button type="submit" class="btn btn-circle purple">ដាក់បញ្ចូល</button>
+                        <a href="{{route('loan.index')}}" title="">
                             <button type="button" class="btn btn-circle grey-salsa btn-outline">បោះបង់</button>
                         </a>
                     </div>

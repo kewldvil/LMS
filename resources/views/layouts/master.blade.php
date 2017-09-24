@@ -14,6 +14,30 @@
         @include('layouts.head')
         @yield('page_css')
         <link rel="shortcut icon" href="favicon.ico" /> 
+        <style>
+            .table>tbody>tr>td{
+                vertical-align: middle;
+            }
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+              display: none !important;
+            } 
+            thead th{
+                text-align: center;
+                font-size: 16px !important;
+            }  
+            .sort-icon {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+
+            th {
+                cursor:pointer;
+            }   
+
+            li.nav-item .badge{
+                top:10px !important;
+            }      
+        </style>
     </head>
     <!-- END HEAD -->        
 
@@ -73,6 +97,7 @@
                             <small>@yield('page_description')</small>
                         </h1>
                         <!-- END PAGE TITLE-->
+                        @yield('dashboard_card')
                         <!-- END PAGE HEADER-->
                         <div class="row">
                             <div class="col-md-12">

@@ -30,7 +30,7 @@ $factory->define(App\Borrower::class, function (Faker\Generator $faker) {
         'sex'=>$faker->randomElement($array = array ('m', 'f')),
         'address' => $faker->address,
         'phone' => $faker->e164PhoneNumber,
-        'photo'=> $faker->imageUrl($width = 640, $height = 480),
+        'photo'=> $faker->randomElement($array = array ('boy.png', 'girl.png')),
     ];
 });
 $factory->define(App\Loan::class, function (Faker\Generator $faker) {

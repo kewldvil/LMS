@@ -33,18 +33,20 @@
                                 <h3 class="uppercase">Features</h3>
                             </li> --}}
                             <li class="nav-item  {!!Request::is('borrower','borrower/*')?'active open':''!!}">
-                                <a href="/borrower" class="nav-link nav-toggle">
+                                <a href="{{route('borrower.index')}}" class="nav-link nav-toggle">
                                     <i class="icon-users"></i>
                                     <span class="title">អតិថិជន</span>
+                                    <span class="badge badge-primary"> {{$totalBorrower}} </span>
                                     @if (Request::is('borrower'))
                                         <span class="selected"></span>    
                                     @endif
                                 </a>
                             </li>
                             <li class="nav-item  {!!Request::is('borrower_loan','borrower_loan/*')?'active open':''!!}">
-                                <a href="/borrower_loan" class="nav-link nav-toggle">
+                                <a href="{{route('borrower_loan.index')}}" class="nav-link nav-toggle">
                                     <i class="fa fa-credit-card"></i>
                                     <span class="title">តារាងកម្ចី</span>
+                                    <span class="badge badge-primary"> {{$totalBorrowerLoan[0]->totalBorrowerLoan}} </span>
                                     @if (Request::is('borrower_loan'))
                                         <span class="selected"></span> 
                                     @endif
@@ -62,7 +64,7 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="/setting/setting_loan" class="nav-link ">
+                                        <a href="{{route('loan.index')}}" class="nav-link ">
                                             <span class="title">កម្ចី</span>
                                         </a>
                                     </li>

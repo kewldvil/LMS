@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Loan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Session;
 use Yajra\Datatables\Facades\Datatables;
 class LoanController extends Controller
 {
@@ -16,7 +17,7 @@ class LoanController extends Controller
     public function index()
     {
         $data= DB::table('loans')->paginate(15);
-        return view('loan_setting',['page_name'=>'កំណែរប្រែប្រភេទកម្ចី','loans'=>$data]);
+        return view('setting.loan.home',['page_name'=>'កំណែរប្រែប្រភេទកម្ចី','loans'=>$data]);
     }
     public function get_datatable()
     {
@@ -29,7 +30,7 @@ class LoanController extends Controller
      */
     public function create()
     {
-        return view('new_setting_loan',['page_name'=>'បន្ថែមប្រភេទកម្ចីថ្មី']);
+        return view('setting.loan.create',['page_name'=>'បន្ថែមប្រភេទកម្ចីថ្មី']);
     }
 
     /**
@@ -46,7 +47,8 @@ class LoanController extends Controller
             'term'=>'required',
         ]);
         Loan::create($request->all());
-        return redirect('/setting/setting_loan');
+        Session::flash('flash_message', 'កម្ចីថ្មីបានបន្ថែម !');
+        return redirect(route('loan.index'));
     }
 
     /**
@@ -57,7 +59,7 @@ class LoanController extends Controller
      */
     public function show(Loan $loan)
     {
-        //
+ 
     }
 
     /**
@@ -68,7 +70,8 @@ class LoanController extends Controller
      */
     public function edit(Loan $loan)
     {
-        //
+        $loan=Loan::find($loan->id);
+        return view('setting.loan.edit',['page_name'=>'កែប្រែប្រភេទកម្ចី','loan'=>$loan]);
     }
 
     /**
@@ -78,11 +81,17 @@ class LoanController extends Controller
      * @param  \App\Loan  $loan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loan $loan)
+    public function update(Request $request,Loan $loan)
     {
-        //
+        // dd($request->all());
+        $loan->loan_name=$request->loan_name;
+        $loan->interest=$request->interest;
+        $loan->term=$request->term;
+        $loan->frequency=$request->frequency;
+        $loan->save();
+        Session::flash('flash_message', 'កម្ចីបានកែប្រែ !');
+        return redirect(route('loan.index'));
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -91,6 +100,8 @@ class LoanController extends Controller
      */
     public function destroy(Loan $loan)
     {
-        //
+        Loan::destroy($loan->id);
+        Session::flash('flash_message', 'កម្ចីបានលុប !');
+        return redirect(route('loan.index'));
     }
 }

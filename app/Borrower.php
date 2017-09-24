@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Payment;
+use Carbon\Carbon;
 use App\Transaction;
 class Borrower extends Model
 {
@@ -22,4 +23,10 @@ class Borrower extends Model
     {
     	return $this->hasMany(Transaction::class);
     }
+
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->format('d-m-Y');
+    // }
 }
+ 
