@@ -62,7 +62,7 @@ class BorrowerLoanController extends Controller
             'borrower_id'=>'required',
             'amount'=>'required',
         ]);
-        DB::transaction(function($request) use(&$request){
+        DB::transaction(function() use($request){
             $id=DB::table('borrower_loan')->insertGetId([
                 "borrower_id"=>$request->borrower_id,
                 "loan_id"=>$request->loan_id,
